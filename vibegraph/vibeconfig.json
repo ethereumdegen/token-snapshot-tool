@@ -1,0 +1,61 @@
+{
+    "development":{
+         
+        "contracts":[ 
+
+            {"address":"0x548cf929a38f760ef70f2daea2a6142d96fe56df", 
+                "startBlock":10681919   , "type":"Payspec"}  
+    
+
+        ],
+    
+            
+        "logging":true,
+        "subscribe":true,
+        "courseBlockGap":10000,
+        "fineBlockGap":20,
+     
+        "chainId":4
+    },
+    "staging":{
+        
+        "contracts":[ 
+
+            {"address":"0x548cf929a38f760ef70f2daea2a6142d96fe56df", 
+                "startBlock":10681919  , "type":"Payspec"}  
+    
+
+        ],
+        "courseBlockGap":10000,
+        "fineBlockGap":20,
+        
+        "logging":true,
+        "subscribe":true,
+         
+     
+        "chainId":1
+    },
+    "production":{
+
+      
+        "contracts":[
+
+            {"address":"", 
+                "startBlock":10681919  , "type":"Payspec"} 
+
+
+            
+        ],
+        "courseBlockGap":10000,
+        "fineBlockGap":20,
+            
+        "logging":true,
+        
+        "subscribe":true,
+
+        "chainId":1
+    }
+    
+    
+   
+}
