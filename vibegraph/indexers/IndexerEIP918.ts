@@ -1,13 +1,13 @@
 const web3utils = require('web3').utils
 
 import ExtensibleMongoDB , {DatabaseExtension} from 'extensible-mongoose'
-import PayspecDBExtension, { PaidInvoiceDefinition } from '../../server/dbextensions/PayspecDBExtension'
-import { createRecord, findRecord } from '../../server/lib/mongo-helper'
+import PayspecDBExtension, { PaidInvoiceDefinition } from '../../dbextensions/PayspecDBExtension'
+import { createRecord, findRecord } from '../../lib/mongo-helper'
 
  
 let envmode = process.env.NODE_ENV ? process.env.NODE_ENV : 'development'
 
-export default class IndexerPayspec {
+export default class IndexerEIP918 {
     
   
     mongoDB
@@ -30,8 +30,8 @@ export default class IndexerPayspec {
         let dbExtensions:Array<DatabaseExtension> = []
     
         dbExtensions.push(...[
-            //PaidInvoiceDefinition
-          new PayspecDBExtension(this.mongoDB),
+           
+          new ERC20DBExtension(this.mongoDB),
         
         ])
         
@@ -62,12 +62,28 @@ export default class IndexerPayspec {
         let contractAddress = web3utils.toChecksumAddress(evt.address)
        
         
-        if(eventName == 'paidinvoice' ){
+        if(eventName == 'mint' ){
               
-            let uuid = (outputs['0']).toLowerCase()
-            let paidBy = web3utils.toChecksumAddress(outputs['1'])
-                         
-            await IndexerPayspec.insertPaidInvoice(  contractAddress , uuid, paidBy, blockNumber, this.mongoDB) 
+     
+            let to = web3utils.toChecksumAddress(outputs['0'] ) 
+            let amount = parseInt(outputs['1']) 
+
+           // await IndexerEIP918.addERC20LedgerBalanceModification(  from, contractAddress , amount * -1, this.mongoDB)
+            await IndexerEIP918.addERC20LedgerBalanceModification(  to, contractAddress , amount, blockNumber, this.mongoDB)
+            //await IndexerEIP918.addERC20LedgerBalanceModification(  contractAddress , uuid, paidBy, blockNumber, this.mongoDB)  
+        }
+        
+        if(eventName == 'transfer' ){
+              
+     
+        
+            let from = web3utils.toChecksumAddress( outputs['0'] )
+            let to = web3utils.toChecksumAddress( outputs['1'] )
+            let amount = parseInt(outputs['2']) 
+
+            await IndexerEIP918.addERC20LedgerBalanceModification(  from, contractAddress , amount * -1, blockNumber, this.mongoDB)
+            await IndexerEIP918.addERC20LedgerBalanceModification(  to, contractAddress , amount, blockNumber, this.mongoDB)
+             
         }
         
         
@@ -76,7 +92,7 @@ export default class IndexerPayspec {
 
      
 
-    static async insertPaidInvoice( contractAddress , invoiceUUID , paidBy, paidAtBlock , mongoDB){
+    static async addERC20LedgerBalanceModification( accountAddress, contractAddress , amountDelta, blockNumber, mongoDB){
 
        
        try{
