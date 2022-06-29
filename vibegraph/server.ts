@@ -11,16 +11,17 @@ import VibeGraph from 'vibegraph'
 import Web3 from 'web3'
  
   
-import OrderDBExtension from '../server/dbextensions/OrderDBExtensions'
+//import OrderDBExtension from '../server/dbextensions/OrderDBExtensions'
 
 
 
 import IndexerPayspec  from './indexers/IndexerPayspec' 
 import VibeHelper from './lib/vibe-helper'
-import FileHelper from '../server/lib/file-helper'
-import AppHelper from '../server/lib/app-helper'
+import FileHelper from '../lib/file-helper'
+import AppHelper from '../lib/app-helper'
+import IndexerEIP918 from './indexers/IndexerEIP918'
 
-let PayspecABI = FileHelper.readJSONFile('./vibegraph/abi/payspec.json')
+let EIP918ABI = FileHelper.readJSONFile('./vibegraph/abi/eip918.json')
  
 
 
@@ -43,8 +44,8 @@ let serverConfig = AppHelper.getServerConfig()
  
     let dbName = 'vibegraph_'.concat(envmode)
 
-    let payspecIndexer = new IndexerPayspec()
-    await payspecIndexer.initialize()
+    let eip918Indexer = new IndexerEIP918()
+    await eip918Indexer.initialize()
 
     let vibeGraphConfig = {  
         contracts:vibeConfig.contracts,
@@ -57,9 +58,9 @@ let serverConfig = AppHelper.getServerConfig()
         logging: vibeConfig.logging ,
         subscribe: vibeConfig.subscribe,
         customIndexers:[{
-          type:'Payspec', 
-          abi: PayspecABI ,  
-          handler: payspecIndexer
+          type:'EIP918', 
+          abi: EIP918ABI ,  
+          handler: eip918Indexer
        }]
          
          

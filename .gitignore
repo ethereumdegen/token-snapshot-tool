@@ -8,3 +8,5 @@ test/cache/**
 
 
 .env
+
+serverconfig.json
