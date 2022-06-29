@@ -1,9 +1,14 @@
-import { AssertionResponse } from "degen-route-loader"
+//import { AssertionResponse } from "degen-route-loader"
  
 import ExtensibleDB, { TableDefinition } from 'extensible-mongoose'
 import AppHelper from "./app-helper"
 import { stringToMongoId } from "./parse-helper"
  
+interface AssertionResponse {
+    success: boolean,
+    error?: string,
+    data?: any 
+}
 
 
 export async function findRecordById( id: string, definition: TableDefinition, mongoDB: ExtensibleDB ) : Promise<AssertionResponse>{

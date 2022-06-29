@@ -1,0 +1,15 @@
+{
+    "snapshotBlock": "160000",
+    "primaryTokenContractAddress": "0xb6ed7644c69416d67b522e20bc294a9a9b405b31",
+
+    "liquidityPools": [
+
+       {"name":"GuildReserve", "type":"GuildReserve", "poolEscrowAddress": "0x167152a46e8616d4a6892a6afd8e52f060151c70", "reserveTokenAddress": "0x657223e3fdf539d92c40664db340097d5d6bd9f5" }, 
+       {"name":"UniswapV2_0xBTC-ETH", "type":"UniswapV2", "poolEscrowAddress": "", "reserveTokenAddress": "" }
+         
+
+    ]
+
+
+
+}

@@ -3,8 +3,9 @@
          
         "contracts":[ 
 
-            {"address":"0x548cf929a38f760ef70f2daea2a6142d96fe56df", 
-                "startBlock":10681919   , "type":"Payspec"}  
+            {"address":"0xb6ed7644c69416d67b522e20bc294a9a9b405b31",  "startBlock": 5039000    , "type":"EIP918"}  ,
+
+            {"address":"0x657223e3fdf539d92c40664db340097d5d6bd9f5",   "startBlock":  12244573     , "type":"ERC20Custom"  }
     
 
         ],
@@ -15,14 +16,15 @@
         "courseBlockGap":10000,
         "fineBlockGap":20,
      
-        "chainId":4
+        "chainId":1
     },
     "staging":{
         
         "contracts":[ 
 
-            {"address":"0x548cf929a38f760ef70f2daea2a6142d96fe56df", 
-                "startBlock":10681919  , "type":"Payspec"}  
+            {"address":"0xb6ed7644c69416d67b522e20bc294a9a9b405b31",  "startBlock": 5039000    , "type":"EIP918"}  ,
+
+            {"address":"0x657223e3fdf539d92c40664db340097d5d6bd9f5",   "startBlock":  12244573     , "type":"ERC20Custom"  }
     
 
         ],
@@ -38,13 +40,13 @@
     "production":{
 
       
-        "contracts":[
+        "contracts":[ 
 
-            {"address":"", 
-                "startBlock":10681919  , "type":"Payspec"} 
+            {"address":"0xb6ed7644c69416d67b522e20bc294a9a9b405b31",  "startBlock": 5039000    , "type":"EIP918"}  ,
 
+            {"address":"0x657223e3fdf539d92c40664db340097d5d6bd9f5",   "startBlock":  12244573     , "type":"ERC20Custom"  }
+    
 
-            
         ],
         "courseBlockGap":10000,
         "fineBlockGap":20,

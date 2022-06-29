@@ -8,7 +8,7 @@ import { createRecord, findRecord } from '../../lib/mongo-helper'
  
 let envmode = process.env.NODE_ENV ? process.env.NODE_ENV : 'development'
 
-export default class IndexerEIP918 {
+export default class IndexerERC20Custom {
     
   
     mongoDB
@@ -68,10 +68,9 @@ export default class IndexerEIP918 {
      
             let to = web3utils.toChecksumAddress(outputs['0'] ) 
             let amount = parseInt(outputs['1']) 
-
-           // await IndexerEIP918.addERC20LedgerBalanceModification(  from, contractAddress , amount * -1, this.mongoDB)
-            await IndexerEIP918.addERC20LedgerBalanceModification(  to, contractAddress , amount, blockNumber, this.mongoDB)
-            //await IndexerEIP918.addERC20LedgerBalanceModification(  contractAddress , uuid, paidBy, blockNumber, this.mongoDB)  
+ 
+            await IndexerERC20Custom.addERC20LedgerBalanceModification(  to, contractAddress , amount, blockNumber, this.mongoDB)
+         
         }
         
         if(eventName == 'transfer' ){
@@ -82,8 +81,8 @@ export default class IndexerEIP918 {
             let to = web3utils.toChecksumAddress( outputs['1'] )
             let amount = parseInt(outputs['2']) 
 
-            await IndexerEIP918.addERC20LedgerBalanceModification(  from, contractAddress , amount * -1, blockNumber, this.mongoDB)
-            await IndexerEIP918.addERC20LedgerBalanceModification(  to, contractAddress , amount, blockNumber, this.mongoDB)
+            await IndexerERC20Custom.addERC20LedgerBalanceModification(  from, contractAddress , amount * -1, blockNumber, this.mongoDB)
+            await IndexerERC20Custom.addERC20LedgerBalanceModification(  to, contractAddress , amount, blockNumber, this.mongoDB)
              
         }
         

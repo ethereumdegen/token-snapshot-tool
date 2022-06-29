@@ -18,9 +18,12 @@ import VibeHelper from './lib/vibe-helper'
 import FileHelper from '../lib/file-helper'
 import AppHelper from '../lib/app-helper'
 import IndexerEIP918 from './indexers/IndexerEIP918'
+import IndexerERC20Custom from './indexers/IndexerERC20Custom'
 
 let EIP918ABI = FileHelper.readJSONFile('./vibegraph/abi/eip918.json')
+let ERC20ABI = FileHelper.readJSONFile('./vibegraph/abi/erc20.json')
  
+
 
 
 let envmode = AppHelper.getEnvironmentName()
@@ -45,6 +48,10 @@ let serverConfig = AppHelper.getServerConfig()
     let eip918Indexer = new IndexerEIP918()
     await eip918Indexer.initialize()
 
+
+    let erc20Indexer = new IndexerERC20Custom()
+    await erc20Indexer.initialize()
+
     let vibeGraphConfig = {  
         contracts:vibeConfig.contracts,
          
@@ -59,7 +66,12 @@ let serverConfig = AppHelper.getServerConfig()
           type:'EIP918', 
           abi: EIP918ABI ,  
           handler: eip918Indexer
-       }]
+       },
+       {
+        type:'ERC20Custom', 
+        abi: ERC20ABI ,  
+        handler: erc20Indexer
+     }]
          
          
     }
