@@ -3,9 +3,7 @@
  
 import ExtensibleMongoDB , {DatabaseExtension} from 'extensible-mongoose'
 
- 
-
-import {DegenAuthExtension} from 'degen-auth'
+  
 
 import VibeGraph from 'vibegraph'
 import Web3 from 'web3'

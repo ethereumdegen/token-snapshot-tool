@@ -10,7 +10,7 @@ const FileReader = require('filereader')
 
 import AppHelper from './app-helper'
 
-const serverConfig = require('../../server/serverconfig.json')[AppHelper.getEnvironmentName()]
+//const serverConfig = require('../serverconfig.json')[AppHelper.getEnvironmentName()]
 
 export default class FileHelper{
 
@@ -49,7 +49,7 @@ export default class FileHelper{
     static saveBinaryFileToCache(data: string, fileName: string) : {savedFile: boolean, error:any} {
           
 
-        let imageStoragePath = serverConfig.imageStoragePath
+        let imageStoragePath = AppHelper.getServerConfig().imageStoragePath
 
         console.log('saving file to cache', imageStoragePath)
         
@@ -70,7 +70,7 @@ export default class FileHelper{
     static saveBase64FileToCache(data: string, fileName: string) : {savedFile: boolean, error:any} {
           
 
-        let imageStoragePath = serverConfig.imageStoragePath
+        let imageStoragePath = AppHelper.getServerConfig().imageStoragePath
 
         console.log('saving file to cache', imageStoragePath)
         
